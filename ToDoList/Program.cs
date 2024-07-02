@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using ToDoList.Context;
+using ToDoList.Controllers;
 
 namespace ToDoList
 {
@@ -7,7 +8,12 @@ namespace ToDoList
     {
         static void Main(string[] args)
         {
+            var _context = new Connection();
+            var test = new ToDoListController(_context);
 
+            Console.WriteLine( test.GetAll().Id);
+            
+            
         }
     }
 }

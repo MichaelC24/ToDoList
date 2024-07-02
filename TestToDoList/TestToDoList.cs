@@ -1,6 +1,6 @@
 namespace TestToDoList
 {
-    public class UnitTest1
+    public class TestToDoList
     {
         [Fact]
         public void Test1()
