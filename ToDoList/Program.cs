@@ -15,8 +15,9 @@ namespace ToDoList
              controller Description = Console.ReadLine();
 
 
-
-
+            //Console.WriteLine( test.GetAll().Id);
+            
+            
         }
     }
 }
