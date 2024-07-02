@@ -2,11 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using ToDoList.Context;
+using ToDoList.Controllers;
+using ToDoList.Model;
+
 
 namespace ToDoList.Controllers
 {
@@ -42,5 +46,42 @@ namespace ToDoList.Controllers
                 return false;
             }
         }
-    }
-}
+        public bool StatusUpdate(int Id, string Status) {
+            var found = _context.ToDoLists.Find(Id);
+            if (found != null) {
+                found.Status = Status;
+                _context.Add(found);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+
+        }
+            public bool DateUpdate(int Id, DateTime DueDate) {
+                var found = _context.ToDoLists.Find(Id);
+                if (found != null) {
+                    found.DueDate = DueDate;
+                    _context.Add(found);
+                    _context.SaveChanges();
+                    return true;
+                }
+                return false;
+
+            }
+        public bool Completed(int Id, string Status) {
+            var ToDo = _context.ToDoLists.Find(Id);
+            if (ToDo.Status != "Completed") {
+                ToDo.Status = "Completed";
+                _context.Add(ToDo);
+                _context.SaveChanges();
+                return true; }
+            return false;
+
+
+        }
+          
+        }
+        }
+
+   
+

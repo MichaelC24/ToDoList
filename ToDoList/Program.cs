@@ -11,8 +11,7 @@ namespace ToDoList
             var _context = new Connection();
             var controller = new ToDoListController(_context);
 
-            Console.WriteLine("add a new todo item: ");
-             controller Description = Console.ReadLine();
+            
 
 
             //Console.WriteLine( test.GetAll().Id);
