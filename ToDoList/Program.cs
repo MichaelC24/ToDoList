@@ -9,7 +9,11 @@ namespace ToDoList
         static void Main(string[] args)
         {
             var _context = new Connection();
-            var test = new ToDoListController(_context);
+            var controller = new ToDoListController(_context);
+
+            Console.WriteLine("add a new todo item: ");
+             controller Description = Console.ReadLine();
+
 
             //Console.WriteLine( test.GetAll().Id);
             
