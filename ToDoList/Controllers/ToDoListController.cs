@@ -19,29 +19,33 @@ namespace ToDoList.Controllers
         {
             _context = context;
         }
-        //public IQueryable<ToDoListTable> GetAll()
-        //{
-        //    var test = (from a in _context.ToDoLists
-        //                select a).ToList() ;
-        //    return test;
+        public List<ToDoListTable> GetAll()
+        {
+            var test = (from a in _context.ToDoLists
+                        where a.Status != "Completed"
+                        orderby a.Priority ascending
+                        select a).ToList();
+            return test;
 
-        //}
+        }
         public bool Add(ToDoListTable todo)
         {
             
             todo.Status = "Active";
             todo.Priority = "Medium";
             todo.DueDate = DateTime.Now.AddDays(7);
-            _context.Add(todo);
-            _context.SaveChanges();
-            if (_context.SaveChanges() == 1)
+            _context.ToDoLists.Add(todo);
+            var rl = _context.SaveChanges();
+            if (rl == 1)
             {
                 return true;
             }
-            else
+            else 
             {
                 return false;
             }
         }
+        
+
     }
 }
