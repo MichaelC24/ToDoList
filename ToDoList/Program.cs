@@ -7,8 +7,7 @@ namespace ToDoList
     {
         static void Main(string[] args)
         {
-            var connStr = "Server = localhost\\sqlexpress01;database=ToDoList;trusted_connection=true;trustServerCertificate=true;";
-            Connection connection = new Connection(connStr);    
+
         }
     }
 }
