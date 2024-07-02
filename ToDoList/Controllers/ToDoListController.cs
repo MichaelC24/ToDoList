@@ -1,30 +1,25 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
+﻿using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Numerics;
 using System.Text;
-using System.Threading.Channels;
 using System.Threading.Tasks;
 using ToDoList.Context;
-using ToDoList.Model;
 
 namespace ToDoList.Controllers
 {
     public class ToDoListController 
-    {
+            {
         private readonly Connection _context;
+        public ToDoListController(Connection context) {
+            _context = context; }
 
-        public ToDoListController(Connection context)
-        {
-            _context = context;
-        }
-        public IEnumerable<ToDoListTable> GetAll()
-        {
-            var test = (from a in _context.ToDoLists
-                        select a).ToList();
-            return test;
-            
-        }
+        //build Method to add Data to To Do List
+       
+        
+     
     }
+    
 }
