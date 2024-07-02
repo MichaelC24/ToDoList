@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ToDoList.Model
 {
-    internal class ToDoList
+    public class ToDoListTable
     {
         public int id {  get; set; }
         [StringLength(100)]
@@ -16,8 +16,8 @@ namespace ToDoList.Model
         [Column(TypeName = "datetime")]
         public DateTime DueDate { get; set; } = DateTime.MinValue;
         [StringLength(30)]
-        public string Status { get; set; } = "Active";
+        public string Status { get; set; } = string.Empty;//"Active";
         [StringLength(30)]
-        public string Priority { get; set; } = "Medium";
+        public string Priority { get; set; } = string.Empty;//"Medium";
     }
 }

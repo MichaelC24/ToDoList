@@ -1,39 +1,23 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ToDoList.Model;
 
 namespace ToDoList.Context
 {
-    public class Connection
+    public class Connection : DbContext
     {
-        private string _connectionString { get; set; } = string.Empty;
-        private SqlConnection? _sqlConnection { get; set; } = null;
 
-        public SqlConnection? GetSqlConnection()
+        public DbSet<ToDoListTable> ToDoLists { get; set; } = default!;
+        
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            return _sqlConnection;
+            optionsBuilder.UseSqlServer("Server = localhost\\sqlexpress01;database=ToDoList;trusted_connection=true;trustServerCertificate=true;");
         }
 
-        public void Open()
-        {
-            _sqlConnection = new SqlConnection(_connectionString);
-            _sqlConnection.Open();
-            if (_sqlConnection.State != System.Data.ConnectionState.Open)
-            {
-                _sqlConnection = null;
-                throw new Exception("Connections Failed");
-            }
-        }
-        public void Close()
-        {
-            _sqlConnection?.Close();
-        }
-        public Connection(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
     }
 }
