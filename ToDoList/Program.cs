@@ -11,7 +11,7 @@ namespace ToDoList
             var _context = new Connection();
             var test = new ToDoListController(_context);
 
-            Console.WriteLine( test.GetAll().Id);
+            //Console.WriteLine( test.GetAll().Id);
             
             
         }
