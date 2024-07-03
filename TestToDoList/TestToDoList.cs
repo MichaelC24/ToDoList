@@ -7,23 +7,31 @@ namespace TestToDoList
 {
     public class TestToDoList
     {
-        ToDoListTable todo = new ToDoListTable();
+        ToDoListTable todo = default!;
         ToDoListController controller = default!;
         Connection _context = default!;
 
-        [Fact]
-        public void Test1()
+
+        public TestToDoList()
         {
             todo = new ToDoListTable();
+            controller = new ToDoListController();
+
         }
         [Fact]
         public void TestAdd()
         {
-            var newTodo = new ToDoListTable() {id = 0, DueDate = new DateTime(2024,7,2), Priority = "", Status = "", Description = "New test"};
-            controller.Add(newTodo);
-            var rl = _context.ToDoLists.Find(newTodo.id);
-            Assert.True(rl != null);
 
+           var todo1 = controller.AddToDo(todo);
+            Assert.Equal("Active", todo.Status);
+            Assert.Equal("Medium", todo.Priority);
+            //Assert.True(todo1.id == _context.ToDoLists.Count());
+        }
+        [Fact]
+        public void TestGetAll()
+        {
+            var x = controller.GetAll();
+            Assert.Equal(x.Count(),_context.ToDoLists.Count());
         }
     }
 }

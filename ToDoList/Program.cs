@@ -10,10 +10,10 @@ namespace ToDoList
         static void Main(string[] args)
         {
             var _context = new Connection();
-            var controller = new ToDoListController(_context);
+            var controller = new ToDoListController();
             var todo = new ToDoListTable() { id = 0, Description = "test2", DueDate = new DateTime(2024, 7, 2), Priority = "", Status = "" };
 
-            Console.WriteLine( controller.Add(todo));
+            Console.WriteLine( controller.AddToDo(todo));
             var x = controller.GetAll();
 
             foreach (var item in x)

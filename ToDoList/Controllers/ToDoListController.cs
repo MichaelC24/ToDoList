@@ -14,12 +14,13 @@ using ToDoList.Model;
 
 namespace ToDoList.Controllers
 {
-    public class ToDoListController 
-            {
+    public class ToDoListController
+    {
         private readonly Connection _context;
 
-        public ToDoListController(Connection context)
+        public ToDoListController()
         {
+            var context = new Connection();
             _context = context;
         }
         public List<ToDoListTable> GetAll()
@@ -31,26 +32,22 @@ namespace ToDoList.Controllers
             return test;
 
         }
-        public bool Add(ToDoListTable todo)
+        public ToDoListTable AddToDo(ToDoListTable todo)
         {
-            
+
             todo.Status = "Active";
             todo.Priority = "Medium";
             todo.DueDate = DateTime.Now.AddDays(7);
             _context.ToDoLists.Add(todo);
             var rl = _context.SaveChanges();
-            if (rl == 1)
-            {
-                return true;
-            }
-            else 
-            {
-                return false;
-            }
+            return (rl == 1) ? todo : null;
+          
         }
-        public bool StatusUpdate(int Id, string Status) {
+        public bool StatusUpdate(int Id, string Status)
+        {
             var found = _context.ToDoLists.Find(Id);
-            if (found != null) {
+            if (found != null)
+            {
                 found.Status = Status;
                 _context.Add(found);
                 _context.SaveChanges();
@@ -59,31 +56,36 @@ namespace ToDoList.Controllers
             return false;
 
         }
-            public bool DateUpdate(int Id, DateTime DueDate) {
-                var found = _context.ToDoLists.Find(Id);
-                if (found != null) {
-                    found.DueDate = DueDate;
-                    _context.Add(found);
-                    _context.SaveChanges();
-                    return true;
-                }
-                return false;
-
-            }
-        public bool Completed(int Id, string Status) {
-            var ToDo = _context.ToDoLists.Find(Id);
-            if (ToDo.Status != "Completed") {
-                ToDo.Status = "Completed";
-                _context.Add(ToDo);
+        public bool DateUpdate(int Id, DateTime DueDate)
+        {
+            var found = _context.ToDoLists.Find(Id);
+            if (found != null)
+            {
+                found.DueDate = DueDate;
+                _context.Add(found);
                 _context.SaveChanges();
-                return true; }
+                return true;
+            }
             return false;
 
+        }
+        //public bool Completed(int Id, string Status)
+        //{
+        //    var ToDo = _context.ToDoLists.Find(Id);
+        //    if (ToDo.Status != "Completed")
+        //    {
+        //        ToDo.Status = "Completed";
+        //        _context.Add(ToDo);
+        //        _context.SaveChanges();
+        //        return true;
+        //    }
+        //    return false;
 
-        }
-          
-        }
-        }
 
-   
+        //}
+
+    }
+}
+
+
 

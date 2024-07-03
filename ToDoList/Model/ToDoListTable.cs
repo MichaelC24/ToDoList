@@ -14,10 +14,10 @@ namespace ToDoList.Model
         [StringLength(100)]
         public string Description { get; set; } = string.Empty;
         [Column(TypeName = "datetime")]
-        public DateTime DueDate { get; set; } = DateTime.MinValue;
+        public DateTime DueDate { get; set; } = DateTime.Now;
         [StringLength(30)]
-        public string Status { get; set; } = string.Empty;//"Active";
+        public string Status { get; set; } = "Active";//"Active";
         [StringLength(30)]
-        public string Priority { get; set; } = string.Empty;//"Medium";
+        public string Priority { get; set; } = "Medium";
     }
 }
